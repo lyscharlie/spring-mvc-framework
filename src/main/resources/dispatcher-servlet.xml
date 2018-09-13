@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop      
+        http://www.springframework.org/schema/aop/spring-aop-3.2.xsd      
+        http://www.springframework.org/schema/beans      
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd      
+        http://www.springframework.org/schema/context      
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd      
+        http://www.springframework.org/schema/mvc      
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd      
+        http://www.springframework.org/schema/tx      
+        http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+	<!-- 注解扫描 -->
+	<context:annotation-config />
+
+	<context:component-scan base-package="com.lyscharlie.web.controller">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<!-- @Controller 请求映射注解扫描 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<!-- json -->
+			<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+						<value>text/plain;charset=UTF-8</value>
+						<value>text/json;charset=UTF-8</value>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			<!-- string -->
+			<bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter" />
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!-- velocity引擎 -->
+	<bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath">
+			<value>/WEB-INF/page/velocity/</value><!-- 页面文件路径相对于webapp -->
+		</property>
+		<property name="configLocation" value="/WEB-INF/velocity.properties" />
+		<property name="velocityProperties">
+			<props>
+				<prop key="input.encoding">UTF-8</prop>
+				<prop key="output.encoding">UTF-8</prop>
+				<prop key="contentType">text/html;charset=UTF-8</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- velocity视图解析器 -->
+	<bean id="velocityViewResover" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+		<property name="cache" value="false" />
+		<property name="layoutUrl" value="/layout/default.vm" />
+		<property name="prefix" value="" />
+		<property name="suffix" value=".vm" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="allowSessionOverride" value="false" />
+		<property name="allowRequestOverride" value="false" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="requestContextAttribute" value="rc" />
+		<property name="toolboxConfigLocation" value="WEB-INF/toolbox.xml" />
+	</bean>
+
+	<!-- Configure the multipart resolver -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding">
+			<value>UTF-8</value>
+		</property>
+		<property name="maxUploadSize">
+			<value>5242880</value><!-- 上传文件大小限制为5M，5*1024*1024 -->
+		</property>
+		<property name="maxInMemorySize">
+			<value>4096</value>
+		</property>
+	</bean>
+</beans> 

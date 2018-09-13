@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans default-autowire="byName">
+
+	<bean id="testTimetask" class="com.lyscharlie.biz.core.test.timetask.TestTimetask" />
+	
+	<bean id="testJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="testTimetask" />
+		</property>
+		<property name="targetMethod">
+			<value>test</value>
+		</property>
+		<property name="concurrent">
+			<value>false</value>
+		</property>
+	</bean>
+	<bean id="testTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="testJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${timeTask.test.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="timeTaskScheduler" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">    
+			<list>
+				<ref local="testTrigger" />
+			</list>
+		</property>
+	</bean>
+
+</beans>

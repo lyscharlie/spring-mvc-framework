@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>登录</title>
+</head>
+<body>
+	<form action="$!{rc.contextPath}/sys/do_login.htm" method="post">
+		<table style="border: 1px; width: 70%">
+			<tr>
+				<td>用户名：</td>
+				<td><input type="text" name="userName" value="$!{userName}"></td>
+			</tr>
+			<tr>
+				<td>密码：</td>
+				<td><input type="password" name="password" value=""></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><button>登录</button></td>
+			</tr>
+		</table>
+	</form>
+	<div>
+        <span class="errorMsg">$!{msg}</span>
+    </div>
+</body>
+</html>

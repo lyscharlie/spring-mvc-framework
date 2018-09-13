@@ -1,0 +1,4 @@
+#set($layout="layout/test.vm")
+
+	<h1>测试页面</h1>
+	<p>$!value</p>

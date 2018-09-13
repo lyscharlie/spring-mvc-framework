@@ -1,0 +1,4 @@
+hello! $!{name}<br/>
+<a href="sys/login.htm">登录</a><br/>
+<a href="sys/register.htm">注册</a><br/>
+<a href="sys/logout.htm">登出</a><br/>

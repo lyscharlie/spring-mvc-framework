@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>注册</title>
+<link rel="stylesheet" type="text/css" href="$!{linkTools.contextPath}/css/style.css" />
+</head>
+<body>
+	<form action="register_doRegister" method="post">
+		<input type="hidden" name="user.registerReferId" value="$!{refer}">
+		<table style="border: 1px; width: 70%">
+			<tr>
+				<td><span class="must">*</span>用户名：</td>
+				<td><input type="text" name="user.userName" value="$!{user.userName}"></td>
+			</tr>
+			<tr>
+				<td><span class="must">*</span>密码：</td>
+				<td><input type="password" name="user.password" value="$!{user.password}"></td>
+			</tr>
+			<tr>
+				<td><span class="must">*</span>邮箱：</td>
+				<td><input type="text" name="user.email" value="$!{user.email}"></td>
+			</tr>
+			<tr>
+				<td>手机号：</td>
+				<td><input type="text" name="user.mobile" value="$!{user.mobile}"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><button>注册</button></td>
+			</tr>
+		</table>
+	</form>
+	<div>
+        <span class="errorMsg">$!{msg}</span>
+    </div>
+</body>
+</html>
