@@ -35,11 +35,18 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<!-- 事务模板 -->
-	<bean id="lyscharlieTransactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
-		<property name="transactionManager">
-			<ref local="transactionManager" />
-		</property>
+	<!-- 配置SqlSessionTemplate -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
+
+	<!-- 配置Mybatis Mapper接口 -->
+	<bean id="MapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.lyscharlie.biz.core.**.dao" />
+		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate" />
+	</bean>
+
+	<!-- 使用annotation注解方式配置事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
 </beans>

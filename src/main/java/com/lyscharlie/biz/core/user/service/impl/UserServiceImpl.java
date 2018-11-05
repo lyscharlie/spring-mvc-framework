@@ -3,6 +3,7 @@ package com.lyscharlie.biz.core.user.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.lyscharlie.biz.core.user.dao.UserDao;
 import com.lyscharlie.biz.core.user.domain.UserDO;
@@ -10,6 +11,7 @@ import com.lyscharlie.biz.core.user.service.UserService;
 import com.lyscharlie.common.dto.BaseResultDTO;
 import com.lyscharlie.common.dto.ResultDTO;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -65,7 +67,7 @@ public class UserServiceImpl implements UserService {
 			result.setSuccess(false);
 			result.setErrorDetail("系统异常");
 		}
-		
+
 		return result;
 	}
 
