@@ -15,11 +15,11 @@ public class TestTimetask {
 		Date date = new Date();
 		logger.info("start time task");
 		try {
-			Thread.sleep(40 * 1000L);
-		} catch (InterruptedException e) {
-			logger.error("sleep error", e);
+			logger.info(sdf.format(date));
+		} catch (Exception e) {
+			logger.error("TestTimetask.test", e);
 		}
-		logger.info(sdf.format(date));
+
 		logger.info("end time task");
 	}
 }
