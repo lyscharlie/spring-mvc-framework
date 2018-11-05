@@ -20,7 +20,7 @@ public class TestServiceImpl implements TestService {
 		try {
 			return dataValue;
 		} catch (Exception e) {
-			logger.error("", e);
+			logger.error("TestServiceImpl.readConfig", e);
 			return null;
 		}
 	}
