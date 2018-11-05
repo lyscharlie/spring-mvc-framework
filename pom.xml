@@ -239,9 +239,18 @@
 			<resource>
 				<directory>src/main/resources</directory>
 				<includes>
-					<include>**/*.*</include>
+					<include>**/*.properties</include>
+					<include>log4j.xml</include>
 				</includes>
 				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/*.properties</exclude>
+					<exclude>log4j.xml</exclude>
+				</excludes>
+				<filtering>false</filtering>
 			</resource>
 		</resources>
 
