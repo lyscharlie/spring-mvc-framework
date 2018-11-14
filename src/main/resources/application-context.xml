@@ -19,6 +19,8 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
 
 	<import resource="classpath:persistence.xml" />
 	<import resource="classpath:spring-applicationcontext/*.xml" />
