@@ -10,7 +10,7 @@
 			<ref bean="testTimetask" />
 		</property>
 		<property name="targetMethod">
-			<value>test</value>
+			<value>test1</value>
 		</property>
 		<property name="concurrent">
 			<value>false</value>
@@ -21,7 +21,7 @@
 			<ref bean="testJobDetail" />
 		</property>
 		<property name="cronExpression">
-			<value>${timeTask.test.cronExpression}</value>
+			<value>${timeTask.test1.cronExpression}</value>
 		</property>
 	</bean>
 
